@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { IonInput, IonButton, IonContent, IonItem, IonLabel } from '@ionic/react';
 import { useParams, useHistory } from 'react-router-dom';
 import ApiService from '../../services/ApiService';
+import './TaskForm.css';
 
 interface Task {
   id: string;
@@ -31,6 +32,11 @@ const TaskForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!task.title.trim()) {
+      alert('Please enter a task title');
+      return;
+    }
+
     const operation = isEditing ? ApiService.put : ApiService.post;
     operation<Task>(`tasks/${isEditing ? id : ''}`, task).subscribe({
       next: () => history.push('/tasks'),
@@ -44,7 +50,7 @@ const TaskForm: React.FC = () => {
 
   return (
     <IonContent>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="task-form">
         <IonItem>
           <IonLabel position="floating">Task Title</IonLabel>
           <IonInput value={task.title} onIonChange={e => handleInputChange(e, 'title')} />
@@ -54,6 +60,7 @@ const TaskForm: React.FC = () => {
           <IonInput value={task.description} onIonChange={e => handleInputChange(e, 'description')} />
         </IonItem>
         <IonButton expand="block" type="submit">Save Task</IonButton>
+        <IonButton expand="block" color="light" onClick={() => history.push('/tasks')}>Cancel</IonButton>
       </form>
     </IonContent>
   );

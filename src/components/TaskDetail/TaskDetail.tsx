@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton } from '@ionic/react';
 import { useParams, useHistory } from 'react-router-dom';
 import ApiService from '../../services/ApiService';
+import './TaskDetail.css';
 
 interface Task {
   id: string;
@@ -28,16 +29,17 @@ const TaskDetail: React.FC = () => {
 
   return (
     <IonContent>
-      {task && (
+      {task ? (
         <IonCard>
           <IonCardHeader>
             <IonCardTitle>{task.title}</IonCardTitle>
           </IonCardHeader>
           <IonCardContent>
             {task.description}
-            {/* Autres détails de la tâche ici */}
           </IonCardContent>
         </IonCard>
+      ) : (
+        <div>Task not found or failed to load</div>
       )}
       <IonButton expand="block" onClick={() => history.push('/tasks')}>Back to List</IonButton>
     </IonContent>

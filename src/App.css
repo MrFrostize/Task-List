@@ -1,0 +1,47 @@
+/* App.css */
+:root {
+    --ion-background-color: #121212; /* Fond noir */
+    --ion-text-color: #fff; /* Texte blanc */
+    --ion-color-primary: #4caf50; /* Vert principal pour les boutons et les highlights */
+    --ion-color-secondary: #f44336; /* Rouge secondaire pour les boutons d'annulation ou de suppression */
+  }
+  
+  .header-footer-toolbar {
+    background-color: var(--ion-color-primary);
+    color: var(--ion-text-color);
+  }
+  
+  .header-footer-title, .menu-list-item {
+    text-align: center;
+  }
+  
+  .main-content {
+    padding: 20px;
+    background-color: var(--ion-background-color);
+    color: var(--ion-text-color);
+  }
+  
+  .menu-list-item {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    color: var(--ion-text-color);
+  }
+  
+  .menu-icon {
+    margin-right: 10px;
+  }
+  
+  .custom-button {
+    margin-top: 10px;
+    --background: var(--ion-color-primary);
+    --color: white;
+  }
+  
+  .custom-button-outline {
+    margin-top: 10px;
+    --background: transparent;
+    --border-color: var(--ion-color-secondary);
+    --color: var(--ion-color-secondary);
+  }
+  

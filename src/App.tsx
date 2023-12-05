@@ -1,59 +1,110 @@
-import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home';
-import TaskList from './components/TaskList/TaskList';
-import TaskForm from './components/TaskForm/TaskForm';
-import TaskDetail from './components/TaskDetail/TaskDetail.js';
+import React from "react";
+import {
+  IonApp,
+  IonContent,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonFooter,
+  IonMenuButton,
+  IonMenu,
+  IonList,
+  IonItem,
+  IonMenuToggle,
+  IonIcon,
+} from "@ionic/react";
+import {
+  list,
+  addCircleOutline,
+  informationCircleOutline,
+  menu,
+} from "ionicons/icons";
 
+import TaskList from "./components/TaskList/TaskList";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import TaskForm from "./components/TaskForm/TaskForm";
+import TaskDetail from "./components/TaskDetail/TaskDetail";
 
-/* Core CSS required for Ionic components to work properly */
-import '@ionic/react/css/core.css';
+const App: React.FC = () => {
+  return (
+    <IonApp>
+      <IonMenu contentId="main-content">
+        <IonHeader>
+          <IonToolbar color="primary">
+            <IonTitle>Menu</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <IonList>
+            <IonMenuToggle auto-hide="false">
+              <IonItem
+                button
+                routerLink="/tasks"
+                routerDirection="none"
+                lines="none"
+                detail={false}
+              >
+                <IonIcon slot="start" icon={list} />
+                View Tasks
+              </IonItem>
+              <IonItem
+                button
+                routerLink="/tasks/new"
+                routerDirection="none"
+                lines="none"
+                detail={false}
+              >
+                <IonIcon slot="start" icon={addCircleOutline} />
+                Add Task
+              </IonItem>
+              <IonItem
+                button
+                routerLink="/about"
+                routerDirection="none"
+                lines="none"
+                detail={false}
+              >
+                <IonIcon slot="start" icon={informationCircleOutline} />
+                About
+              </IonItem>
+            </IonMenuToggle>
+          </IonList>
+        </IonContent>
+      </IonMenu>
 
-/* Basic CSS for apps built with Ionic */
-import '@ionic/react/css/normalize.css';
-import '@ionic/react/css/structure.css';
-import '@ionic/react/css/typography.css';
+      <div id="main-content">
+      <IonHeader>
+          <IonToolbar>
+            <IonMenuButton slot="start" />
+            <IonTitle>Your Task Manager</IonTitle>
+          </IonToolbar>
+        </IonHeader>
 
-/* Optional CSS utils that can be commented out */
-import '@ionic/react/css/padding.css';
-import '@ionic/react/css/float-elements.css';
-import '@ionic/react/css/text-alignment.css';
-import '@ionic/react/css/text-transformation.css';
-import '@ionic/react/css/flex-utils.css';
-import '@ionic/react/css/display.css';
+        <IonContent>
+          <Router>
+            <Switch>
+              <Route path="/tasks" component={TaskList} exact />
+              <Route path="/tasks/new" component={TaskForm} exact />
+              <Route path="/tasks/:id" component={TaskDetail} exact />
+              <Redirect from="/" to="/tasks" exact />
+              {/* Ajoutez plus de routes ici si nécessaire */}
+            </Switch>
+          </Router>
+        </IonContent>
 
-/* Theme variables */
-import './theme/variables.css';
-
-setupIonicReact();
-
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-        <Route exact path="/tasks">
-          <TaskList />
-        </Route>
-        <Route exact path="/add-task">
-          <TaskForm />
-        </Route>
-        <Route path="/edit-task/:id">
-          <TaskForm />
-        </Route>
-        <Route path="/task-detail/:id">
-          <TaskDetail />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+        <IonFooter>
+          <IonToolbar>
+            <IonTitle>Footer Content</IonTitle>
+          </IonToolbar>
+        </IonFooter>
+      </div>
+    </IonApp>
+  );
+};
 
 export default App;
