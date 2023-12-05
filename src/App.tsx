@@ -6,6 +6,7 @@ import {
   IonToolbar,
   IonTitle,
   IonFooter,
+  IonRouterOutlet,
   IonMenuButton,
   IonMenu,
   IonList,
@@ -17,18 +18,16 @@ import {
   list,
   addCircleOutline,
   informationCircleOutline,
-  menu,
 } from "ionicons/icons";
-
 import TaskList from "./components/TaskList/TaskList";
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
   Redirect,
 } from "react-router-dom";
 import TaskForm from "./components/TaskForm/TaskForm";
 import TaskDetail from "./components/TaskDetail/TaskDetail";
+import './App.css'
 
 const App: React.FC = () => {
   return (
@@ -78,7 +77,7 @@ const App: React.FC = () => {
       </IonMenu>
 
       <div id="main-content">
-      <IonHeader>
+        <IonHeader>
           <IonToolbar>
             <IonMenuButton slot="start" />
             <IonTitle>Your Task Manager</IonTitle>
@@ -87,13 +86,12 @@ const App: React.FC = () => {
 
         <IonContent>
           <Router>
-            <Switch>
+            <IonRouterOutlet>
               <Route path="/tasks" component={TaskList} exact />
               <Route path="/tasks/new" component={TaskForm} exact />
               <Route path="/tasks/:id" component={TaskDetail} exact />
               <Redirect from="/" to="/tasks" exact />
-              {/* Ajoutez plus de routes ici si nécessaire */}
-            </Switch>
+            </IonRouterOutlet>
           </Router>
         </IonContent>
 

@@ -1,6 +1,6 @@
 /* App.css */
 :root {
-    --ion-background-color: #121212; /* Fond noir */
+    --ion-background-color: #d5cccc; /* Fond noir */
     --ion-text-color: #fff; /* Texte blanc */
     --ion-color-primary: #4caf50; /* Vert principal pour les boutons et les highlights */
     --ion-color-secondary: #f44336; /* Rouge secondaire pour les boutons d'annulation ou de suppression */

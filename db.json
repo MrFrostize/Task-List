@@ -1,0 +1,6 @@
+{
+  "tasks": [
+    { "id": 1, "title": "Acheter du lait", "completed": false },
+    { "id": 2, "title": "Envoyer le rapport", "completed": false }
+  ]
+}
